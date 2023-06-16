@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:42:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/14 17:10:38 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 16:25:55 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,6 @@
 /*Free everything in the data struct*/
 static void	free_data(t_data *data)
 {
-	if (data->meal_lock)
-	{
-		pthread_mutex_destroy(data->meal_lock);
-		free(data->meal_lock);
-	}
 	if (data->print)
 	{
 		pthread_mutex_destroy(data->print);
@@ -42,10 +37,15 @@ static void	free_philo(t_philo *philo)
 	while (philo)
 	{
 		temp = philo->next;
-		if (!philo->fork)
+		if (philo->fork)
 		{
 			pthread_mutex_destroy(philo->fork);
 			free(philo->fork);
+		}
+		if (philo->meal_lock)
+		{
+			pthread_mutex_destroy(philo->meal_lock);
+			free(philo->meal_lock);
 		}
 		free(philo);
 		philo = temp;

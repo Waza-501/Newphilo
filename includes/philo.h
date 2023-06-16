@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/14 17:17:28 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 16:58:24 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ ms to sleep."
 threads."
 # define FIN		"Simulation succesful. All Philosophers are satisfied"
 
+typedef struct s_philo	t_philo;
+
 /*This struct contains all general data,
 consisting of user input and other important metrics.*/
 typedef struct s_data
@@ -50,8 +52,9 @@ typedef struct s_data
 	time_t			time_to_sleep;
 	int				meals_req;
 	time_t			starttime;
-	bool			finish;
-	pthread_mutex_t	*meal_lock;
+	bool			stop;
+	t_philo			*start;
+	pthread_t		grim_reaper;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*dead;
 
@@ -63,11 +66,12 @@ typedef struct s_philo
 {
 	t_data			*data;
 	size_t			tag;
-	bool			finished;
-	size_t			times_eaten;
+	bool			finish;
+	unsigned int	times_eaten;
 	time_t			last_dinner;
 	pthread_t		thread;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	*meal_lock;
 	struct s_philo	*prev;
 	struct s_philo	*next;
 }			t_philo;
@@ -86,6 +90,7 @@ typedef enum e_status
 /*Utils*/
 int			ft_strlen(char *str);
 int			ft_philoatoi(const char *str, int tmp);
+t_philo		*search_first(t_philo *list);
 
 /*Input_check*/
 int			input_checker(int ac, char **av);
@@ -95,16 +100,36 @@ int			value_checker(t_data *data, int ac);
 void		free_all(t_data *data, t_philo *philo, pthread_t *threads);
 
 /*Initialize*/
+bool		init_mutex(t_data *data, t_philo *philo);
+t_philo		*spawn_philos(t_data *data);
 t_data		*init_data(char **av);
+t_philo		*init_philo(t_data *data, size_t count);
 
 /*Printing*/
 int			err(char *str);
-void		print_status(t_data *data, t_philo *philo, t_status status);
+void		print_status(t_philo *philo, bool death, t_status status);
+
+/*Eat_sleep_think*/
+void		drop_forks(t_philo *philo);
+void		think_time(t_data *data, t_philo *philo, bool start);
+void		eat_sleep(t_data *data, t_philo *philo);
 
 /*Symposium*/
 bool		start_session(t_data *data);
 
+/*Grim reaper*/
+void		set_finish(t_data *data, int status);
+bool		check_status(t_data *data);
+bool		is_finished(t_data *data);
+void		*grim_reaper(void *arg);
+
+/*Threads*/
+pthread_t	join_threads(pthread_t *threads, size_t amount);
+pthread_t	*create_threads(t_data *data);
+
 /*Time*/
 time_t		get_current_time(void);
+void		delay_start(t_data *data);
+void		c_sleep(t_data *data, size_t sleeptime);
 
 #endif

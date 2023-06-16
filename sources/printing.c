@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:24:37 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/14 17:05:39 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 17:52:59 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,37 @@ int	err(char *str)
 	return (-1);
 }
 
-// void	zero_meals(void)
-// {
-// 	printf("Simulation has ended.\n");
-// }
-
-static void	sim_print(t_data *data, t_philo *philo, char *str)
+static void	sim_print(t_philo *philo, char *str)
 {
 	bool	debug;
 
 	debug = false;
-	if (data->finish == false && debug == false)
+	if (debug == false)
 		printf("%ld %zu %s\n", get_current_time()
-			- data->starttime, philo->tag, str);
+			- philo->data->starttime, philo->tag, str);
 }
 
-void	print_status(t_data *data, t_philo *philo, t_status status)
+void	print_status(t_philo *philo, bool death, t_status status)
 {
-	pthread_mutex_lock(data->dead);
-	pthread_mutex_lock(data->print);
+	pthread_mutex_lock(philo->data->print);
+	if (is_finished(philo->data) == true && death == false)
+	{
+		pthread_mutex_unlock(philo->data->print);
+		return ;
+	}
+	//printf("print time\n");
 	if (status == FORK)
-		sim_print(data, philo, "has taken a fork");
+		sim_print(philo, "has taken a fork");
 	else if (status == EAT)
-		sim_print(data, philo, "is eating");
+		sim_print(philo, "is eating");
 	else if (status == THINK)
-		sim_print(data, philo, "is thinking");
+		sim_print(philo, "is thinking");
 	else if (status == SLEEP)
-		sim_print(data, philo, "is sleeping");
+		sim_print(philo, "is sleeping");
 	else if (status == DEATH)
 		printf("%ld %zu has died\n",
-			get_current_time() - data->starttime, philo->tag);
+			get_current_time() - philo->data->starttime, philo->tag);
 	else if (status == FINISHED)
 		printf("%s\n", FIN);
-	pthread_mutex_unlock(data->dead);
-	pthread_mutex_unlock(data->print);
+	pthread_mutex_unlock(philo->data->print);
 }

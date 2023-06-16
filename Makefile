@@ -1,12 +1,15 @@
 NAME :=					philo
 CC := 					gcc
-CFLAGS :=				-Wall -Werror -Wextra -g
+CFLAGS :=				-Wall -Werror -Wextra -g -fsanitize=thread
 
 SOURCES	:=		cleanup.c\
+				eat_sleep_think.c\
+				grim_reaper.c\
 				initialize.c\
 				input_check.c\
 				printing.c\
 				symposium.c\
+				threads.c\
 				time.c\
 				utils.c\
 				main.c\

@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:59:53 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/14 17:04:30 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 17:32:51 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,24 @@ time_t	get_current_time(void)
 
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+void	delay_start(t_data *data)
+{
+	while (get_current_time() < data->starttime)
+		continue ;
+}
+
+/*Custom sleep function that sleeps in 200 microsecond
+intervals, stopping early if the simulation has ended*/
+void	c_sleep(t_data *data, size_t sleeptime)
+{
+	time_t	timer;
+
+	timer = get_current_time() + sleeptime;
+	while (get_current_time() < timer)
+	{
+		if (check_status(data) == true)
+			break ;
+		usleep(200);
+	}
 }

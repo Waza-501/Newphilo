@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:36:35 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/14 17:09:17 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 13:44:59 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,19 @@ int	main(int ac, char **av)
 	if (input_checker(ac, av) != 0)
 		return (-1);
 	data = init_data(av);
-	if (!data || value_checker(data, ac) != 0)
+	if (!data)
 	{
+		printf("It fails at step 1 bruh\n");
 		free_all(data, NULL, NULL);
 		return (-1);
 	}
-	free_all(data, NULL, NULL);
-	//build_symposium(data);
+	if (value_checker(data, ac) != 0)
+	{
+		printf("It fails at step 2 bruh\n");
+		free_all(data, NULL, NULL);
+		return (-1);
+	}
+	if (start_session(data) == false)
+		return (err(ERR_FND));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:59:53 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 19:20:34 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 21:05:14 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	delay_start(t_data *data)
 		continue ;
 }
 
-/*Custom sleep function that sleeps in 200 microsecond
+/*Custom sleep function that sleeps in 100 microsecond
 intervals, stopping early if the simulation has ended*/
 void	c_sleep(t_data *data, size_t sleeptime)
 {
@@ -37,6 +37,6 @@ void	c_sleep(t_data *data, size_t sleeptime)
 	{
 		if (check_status(data) == true)
 			break ;
-		usleep(100);
+		usleep(500);
 	}
 }

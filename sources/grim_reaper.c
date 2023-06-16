@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 09:45:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 19:23:10 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 20:37:40 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	set_finish(t_data *data, int status)
 {
-	//printf("locking dead\n");
 	pthread_mutex_lock(data->dead);
-	//printf("updates status\n");
 	data->stop = status;
+	//printf("updated status\n");
 	pthread_mutex_unlock(data->dead);
-	//printf("unlocking dead\n");
 }
 bool	check_status(t_data *data)
 {
@@ -58,11 +56,6 @@ bool	is_finished(t_data *data)
 
 	philo = data->start;
 	satiated = true;
-	// while (philo)
-	// {
-	// 	printf("philo tag is %zu\n", philo->tag);
-	// 	philo = philo->next;
-	// }
 	philo = data->start;
 	while (philo)
 	{
@@ -90,14 +83,12 @@ void	*grim_reaper(void *arg)
 	t_data	*data;
 
 	data = (t_data *)arg;
-	//printf("grim reaper is alive\n");
 	if (data->meals_req == 0)
 		return (NULL);
 	set_finish(data, false);
 	delay_start(data);
 	while (true)
 	{
-		//printf("grim reaper time\n");
 		if (is_finished(data) == true)
 			return (NULL);
 		usleep(1000);

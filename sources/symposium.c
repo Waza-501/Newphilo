@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 19:00:14 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 20:33:02 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,23 @@ void	*philosopher(void *input)
 	t_philo	*philo;
 
 	philo = (t_philo *)input;
-	//printf("entered philosopher loop\n");
 	if (philo->data->meals_req == 0)
 		return (NULL);
-	//printf("passed the 0 meal check\n");
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_dinner = philo->data->starttime;
 	pthread_mutex_unlock(philo->meal_lock);
-	//printf("starttime set\n");
 	if (philo->data->time_to_die == 0)
 		return (NULL);
-	//printf("time to die isn't 0\n");
 	if (philo->data->philo_nbr == 1)
 		return (single_philo(philo->data, philo));
-	//printf("there is more than one philo\n");
 	delay_start(philo->data);
 	if (philo->tag % 2)
 		think_time(philo->data, philo, true);
 	while (check_status(philo->data) == false)
 	{
-		//printf("entered the main loop\n");
 		eat_sleep(philo->data, philo);
 		think_time(philo->data, philo, false);
 	}
-	//printf("checkpoint\n");
 	return (NULL);
 }
 
@@ -80,12 +73,12 @@ bool	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 		philo = philo->next;
 		i++;
 	}
-	printf("%zu threads/philosophers created\n", i);
+	//printf("%zu threads/philosophers created\n", i);
 	if (data->philo_nbr > 1)
 	{
 		if (pthread_create(&data->grim_reaper, NULL,
 			&grim_reaper, (void *)data) != 0)
-			return (false);
+				return (false);
 	}
 	return (true);
 }

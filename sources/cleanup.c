@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:42:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 16:25:55 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 20:34:38 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	free_data(t_data *data)
 		pthread_mutex_destroy(data->dead);
 		free(data->dead);
 	}
-	printf("Data is free\n");
+	//printf("Data is free\n");
 	free (data);
 }
 
@@ -50,7 +50,7 @@ static void	free_philo(t_philo *philo)
 		free(philo);
 		philo = temp;
 	}
-	printf("All philosophers are free\n");
+	//printf("All philosophers are free\n");
 }
 
 /*If present, will free the given structs/allocated memory*/
@@ -61,6 +61,6 @@ void	free_all(t_data *data, t_philo *philo, pthread_t *threads)
 	if (philo)
 		free_philo(philo);
 	free(threads);
-	sleep(1);
+	//sleep(1);
 	printf("All information is gone :D\n");
 }

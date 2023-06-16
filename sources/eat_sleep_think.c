@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 10:40:05 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 18:09:44 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 18:13:03 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	think_time(t_data *data, t_philo *philo, bool start)
 	{
 		printf("waiting so forks aren't mega yoinked\n");
 		think_timer = 1;
-		sleep(1);
 	}
 	if (think_timer > 500)
 		think_timer = 200;

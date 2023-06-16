@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 17:56:05 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 19:00:14 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*philosopher(void *input)
 	delay_start(philo->data);
 	if (philo->tag % 2)
 		think_time(philo->data, philo, true);
-	while (is_finished(philo->data) == false)
+	while (check_status(philo->data) == false)
 	{
 		//printf("entered the main loop\n");
 		eat_sleep(philo->data, philo);

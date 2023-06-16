@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 09:45:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 18:02:49 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 19:00:29 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,23 @@
 
 void	set_finish(t_data *data, int status)
 {
+	//printf("locking dead\n");
 	pthread_mutex_lock(data->dead);
+	//printf("updates status\n");
 	data->stop = status;
 	pthread_mutex_unlock(data->dead);
+	//printf("unlocking dead\n");
 }
 bool	check_status(t_data *data)
 {
 	bool	status;
 
 	status = false;
+	//printf("locking dead\n");
 	pthread_mutex_lock(data->dead);
 	if (data->stop == true)
 		status = true;
+	//printf("unlocking dead\n");
 	pthread_mutex_unlock(data->dead);
 	return (status);
 }
@@ -38,7 +43,7 @@ bool	kill_philo(t_data *data, t_philo *philo)
 	//printf("mutex fuckery found?\n");
 	if ((time - philo->last_dinner) >= data->time_to_die)
 	{
-		printf("check to make sure no one dies\n");
+		//printf("check to make sure no one dies\n");
 		set_finish(data, true);
 		print_status(philo, true, DEATH);
 		pthread_mutex_unlock(philo->meal_lock);
@@ -91,7 +96,7 @@ void	*grim_reaper(void *arg)
 	delay_start(data);
 	while (true)
 	{
-		printf("grim reaper time\n");
+		//printf("grim reaper time\n");
 		if (is_finished(data) == true)
 			return (NULL);
 		usleep(1000);

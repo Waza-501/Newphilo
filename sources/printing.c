@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:24:37 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 17:52:59 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 19:00:35 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static void	sim_print(t_philo *philo, char *str)
 void	print_status(t_philo *philo, bool death, t_status status)
 {
 	pthread_mutex_lock(philo->data->print);
-	if (is_finished(philo->data) == true && death == false)
+	if (check_status(philo->data) == true && death == false)
 	{
+		//printf("This ins't right\n");
 		pthread_mutex_unlock(philo->data->print);
 		return ;
 	}
-	//printf("print time\n");
 	if (status == FORK)
 		sim_print(philo, "has taken a fork");
 	else if (status == EAT)

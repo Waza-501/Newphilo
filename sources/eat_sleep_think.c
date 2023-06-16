@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 10:40:05 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 18:13:03 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 18:59:43 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	think_time(t_data *data, t_philo *philo, bool start)
 	think_timer = (data->time_to_die
 			- (get_current_time() - philo->last_dinner)
 			- data->time_to_eat) / 2;
-	printf("timer is %li\n", think_timer);
+	//printf("timer is %li\n", think_timer);
 	pthread_mutex_unlock(philo->meal_lock);
 	if (think_timer < 0)
 		think_timer = 0;
 	if (think_timer == 0 && start == true)
 	{
-		printf("waiting so forks aren't mega yoinked\n");
+		//printf("waiting so forks aren't mega yoinked\n");
 		think_timer = 1;
 	}
 	if (think_timer > 500)

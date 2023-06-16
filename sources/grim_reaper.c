@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 09:45:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 19:00:29 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/16 19:23:10 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,9 @@ bool	check_status(t_data *data)
 	bool	status;
 
 	status = false;
-	//printf("locking dead\n");
 	pthread_mutex_lock(data->dead);
 	if (data->stop == true)
 		status = true;
-	//printf("unlocking dead\n");
 	pthread_mutex_unlock(data->dead);
 	return (status);
 }
@@ -78,7 +76,10 @@ bool	is_finished(t_data *data)
 		philo = philo->next;
 	}
 	if (data->meals_req != -1 && satiated == true)
-		return (true);
+		{
+			set_finish(data, true);
+			return (true);
+		}
 	return (false);
 }
 

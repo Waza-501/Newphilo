@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 15:44:29 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 16:14:23 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int			free_all(t_data *data, t_philo *philo, pthread_t *threads);
 int			thread_error(t_data *d, pthread_t *t, size_t num);
 
 /*Initialize*/
-bool		init_mutex(t_data *data, t_philo *philo);
+bool		init_mutex(t_data *data);
 t_philo		*spawn_philos(t_data *data);
 t_data		*init_data(char **av);
 t_philo		*init_philo(t_data *data, size_t count);

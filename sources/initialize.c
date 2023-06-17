@@ -6,27 +6,27 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:09:44 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 16:13:43 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	init_mutex(t_data *data, t_philo *philo)
+bool	init_mutex(t_data *data)
 {
 	printf("init for mutex time\n");
 	if (pthread_mutex_init(data->print, NULL) != 0)
 		return (false);
 	if (pthread_mutex_init(data->dead, NULL) != 0)
 		return (false);
-	while (philo)
-	{
-		if (pthread_mutex_init(philo->fork, NULL) != 0)
-			return (false);
-		if (pthread_mutex_init(philo->meal_lock, NULL) != 0)
-			return (false);
-		philo = philo->next;
-	}
+	// while (philo)
+	// {
+	// 	if (pthread_mutex_init(philo->fork, NULL) != 0)
+	// 		return (false);
+	// 	if (pthread_mutex_init(philo->meal_lock, NULL) != 0)
+	// 		return (false);
+	// 	philo = philo->next;
+	// }
 	printf("mutex init done\n");
 	return (true);
 }
@@ -77,6 +77,10 @@ t_philo	*init_philo(t_data *data, size_t count)
 	philo->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	philo->meal_lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (!philo->fork || !philo->meal_lock)
+		return (NULL);
+	if (pthread_mutex_init(philo->fork, NULL) != 0)
+		return (NULL);
+	if (pthread_mutex_init(philo->meal_lock, NULL) != 0)
 		return (NULL);
 	return (philo);
 }

@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:02:07 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 16:14:11 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 	size_t	i;
 
 	i = 0;
-	if (init_mutex(data, philo) != true)
+	if (init_mutex(data) != true)
 		return (false);
 	data->starttime = get_current_time() + (data->philo_nbr * 2 * 10);
 	printf("starting philo spawn\n");

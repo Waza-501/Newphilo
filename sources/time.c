@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:59:53 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 13:02:19 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/17 14:49:27 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ time_t	get_current_time(void)
 
 void	delay_start(t_data *data)
 {
-	while (get_current_time() < data->starttime)
+	while (get_current_time() < data->starttime && check_status(data) == false)
 		continue ;
 }
 

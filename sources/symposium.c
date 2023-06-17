@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 14:27:43 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/17 14:52:23 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ bool	start_session(t_data *data)
 	data->start = philo;
 	if (start_sim(data, philo, threads) == false)
 	{
-		err(ERR_FND);
+		err(ERR_T_F);
 		set_finish(data, true);
-		free_all(data, philo, threads);
+		end_session(data, philo, threads);
 		return (false);
 	}
 	if (end_session(data, philo, threads) == false)

@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 14:15:59 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/17 14:51:51 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ ms to sleep."
  soon as it starts."
 # define ERR_T_FND	"An issue occured during creation of the required \
 threads."
+# define ERR_T_F	"Failure occured during pthread_create. Please try again."
 # define FIN		"Simulation succesful. All Philosophers are satisfied"
 
 typedef struct s_philo	t_philo;

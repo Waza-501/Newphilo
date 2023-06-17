@@ -1,6 +1,6 @@
 NAME :=					philo
 CC := 					gcc
-CFLAGS :=				-Wall -Werror -Wextra -g
+CFLAGS :=				-Wall -Werror -Wextra -g -fsanitize=address
 
 SOURCES	:=		cleanup.c\
 				eat_sleep_think.c\

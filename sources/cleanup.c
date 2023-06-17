@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:42:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 20:34:38 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 08:30:03 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	free_all(t_data *data, t_philo *philo, pthread_t *threads)
 		free_philo(philo);
 	free(threads);
 	//sleep(1);
-	printf("All information is gone :D\n");
+	//printf("All information is gone :D\n");
 }

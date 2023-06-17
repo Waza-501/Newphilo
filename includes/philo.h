@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 16:58:24 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 14:15:59 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdbool.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <limits.h>
 
 /*Defines to make error messages easier and more readable. 
 ERR = error I = input D = data*/

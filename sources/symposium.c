@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 13:06:55 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/17 14:27:43 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	*philosopher(void *input)
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_dinner = philo->data->starttime;
 	pthread_mutex_unlock(philo->meal_lock);
+	delay_start(philo->data);
 	if (philo->data->time_to_die == 0)
 		return (NULL);
 	if (philo->data->philo_nbr == 1)
 		return (single_philo(philo->data, philo));
-	delay_start(philo->data);
-	if (philo->tag % 2)
+	else if (philo->tag % 2)
 		think_time(philo->data, philo, true);
 	while (check_status(philo->data) == false)
 	{
@@ -98,6 +98,7 @@ bool	start_session(t_data *data)
 	if (start_sim(data, philo, threads) == false)
 	{
 		err(ERR_FND);
+		set_finish(data, true);
 		free_all(data, philo, threads);
 		return (false);
 	}

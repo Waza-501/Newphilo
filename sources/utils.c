@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:04:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/14 16:57:45 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 14:21:26 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	check_str_atoi(const char *str)
 /*Atoi modified to work better with philo project.*/
 int	ft_philoatoi(const char *str, int tmp)
 {
-	size_t	nbr;
+	unsigned long	nbr;
 	int		i;
 
 	i = 0;

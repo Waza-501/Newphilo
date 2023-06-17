@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 09:45:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:51:28 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/17 17:59:49 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	*grim_reaper(void *arg)
 	{
 		if (is_finished(data) == true)
 			return (NULL);
-		usleep(200);
+		usleep(1000);
 	}
 	return (NULL);
 }

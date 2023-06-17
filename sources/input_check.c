@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:39:22 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 14:05:27 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/17 16:21:31 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	value_checker(t_data *data, int ac)
 	int	i;
 
 	i = 0;
+	if (data->philo_nbr > 2000000)
+		printf("%s\n", (WARNING_S));
 	if (data->philo_nbr < 1)
 		i = err(ERR_D_NP);
 	if (data->time_to_die == 0)

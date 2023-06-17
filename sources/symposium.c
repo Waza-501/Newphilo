@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:14:11 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 16:52:14 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	end_session(t_data *data, pthread_t *threads)
 {
-	printf("don't print pls\n");
+	//printf("don't print pls\n");
 	join_threads(threads, data->philo_nbr);
 	if (data->philo_nbr > 1)
 		pthread_join(data->grim_reaper, NULL);
@@ -91,14 +91,12 @@ bool	start_session(t_data *data)
 
 	threads = create_threads(data);
 	philo = spawn_philos(data);
-	printf("all prepped and ready\n");
 	if (!threads || !philo)
 	{
 		free_all(data, philo, threads);
 		return (false);
 	}
 	data->start = philo;
-	printf("starting sim\n");
 	if (start_sim(data, philo, threads) < 0)
 	{
 		if (check_status(data) == true)

@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:13:43 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 16:52:55 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 bool	init_mutex(t_data *data)
 {
-	printf("init for mutex time\n");
 	if (pthread_mutex_init(data->print, NULL) != 0)
 		return (false);
 	if (pthread_mutex_init(data->dead, NULL) != 0)
@@ -27,7 +26,6 @@ bool	init_mutex(t_data *data)
 	// 		return (false);
 	// 	philo = philo->next;
 	// }
-	printf("mutex init done\n");
 	return (true);
 }
 
@@ -52,9 +50,7 @@ t_philo	*spawn_philos(t_data *data)
 		philo = philo->next;
 		philo->prev = temp;
 		count++;
-		//printf("count is %zu\n", count);
 	}
-	printf("all philos created\n");
 	return (data->start);
 }
 

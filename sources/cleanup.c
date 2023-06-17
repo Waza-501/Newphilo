@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:42:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 14:50:25 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 15:45:29 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,24 @@ static void	free_philo(t_philo *philo)
 }
 
 /*If present, will free the given structs/allocated memory*/
-void	free_all(t_data *data, t_philo *philo, pthread_t *threads)
+int	free_all(t_data *data, t_philo *philo, pthread_t *threads)
 {
 	if (data)
 		free_data(data);
+	printf("data is gone\n");
 	if (philo)
 		free_philo(philo);
+	printf("philo is gone\n");
 	free(threads);
+	printf("threads are gone\n");
+	return (0);
 }
+
+int	thread_error(t_data *d, pthread_t *t, size_t num)
+{
+	err(ERR_T_F);
+	set_finish(d, true);
+	join_threads(t, num);
+	return (-1);
+}
+

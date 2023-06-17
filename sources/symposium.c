@@ -6,18 +6,19 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 15:13:17 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 16:02:07 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	end_session(t_data *data, t_philo *philo, pthread_t *threads)
+bool	end_session(t_data *data, pthread_t *threads)
 {
+	printf("don't print pls\n");
 	join_threads(threads, data->philo_nbr);
 	if (data->philo_nbr > 1)
 		pthread_join(data->grim_reaper, NULL);
-	free_all(data, philo, threads);
+	//free_all(data, philo, threads);
 	return (true);
 }
 
@@ -57,7 +58,7 @@ void	*philosopher(void *input)
 	return (NULL);
 }
 
-bool	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
+int	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 {
 	size_t	i;
 
@@ -70,7 +71,7 @@ bool	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 	{
 		if (pthread_create(&threads[i], NULL, &philosopher,
 				(void *)philo) != 0)
-			return (false);
+			return (thread_error(data, threads, i));
 		philo = philo->next;
 		i++;
 	}
@@ -78,9 +79,9 @@ bool	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 	{
 		if (pthread_create(&data->grim_reaper, NULL,
 				&grim_reaper, (void *)data) != 0)
-			return (false);
+			return (-2);
 	}
-	return (true);
+	return (0);
 }
 
 bool	start_session(t_data *data)
@@ -88,25 +89,27 @@ bool	start_session(t_data *data)
 	pthread_t	*threads;
 	t_philo		*philo;
 
-	printf("starting session\n");
 	threads = create_threads(data);
-	printf("threads created\n");
 	philo = spawn_philos(data);
-	printf("philo created\n");
+	printf("all prepped and ready\n");
 	if (!threads || !philo)
 	{
 		free_all(data, philo, threads);
 		return (false);
 	}
 	data->start = philo;
-	if (start_sim(data, philo, threads) == false)
+	printf("starting sim\n");
+	if (start_sim(data, philo, threads) < 0)
 	{
+		if (check_status(data) == true)
+			return (free_all(data, philo, threads));
 		err(ERR_T_F);
 		set_finish(data, true);
-		end_session(data, philo, threads);
-		return (false);
+		end_session(data, threads);
+		return (free_all(data, philo, threads));
 	}
-	if (end_session(data, philo, threads) == false)
-		return (err(ERR_FND));
+	if (end_session(data, threads) == false)
+		return (free_all(data, philo, threads));
+	free_all(data, philo, threads);
 	return (true);
 }

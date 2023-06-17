@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 15:13:47 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 16:09:44 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	init_mutex(t_data *data, t_philo *philo)
 {
+	printf("init for mutex time\n");
 	if (pthread_mutex_init(data->print, NULL) != 0)
 		return (false);
 	if (pthread_mutex_init(data->dead, NULL) != 0)
@@ -26,6 +27,7 @@ bool	init_mutex(t_data *data, t_philo *philo)
 			return (false);
 		philo = philo->next;
 	}
+	printf("mutex init done\n");
 	return (true);
 }
 
@@ -40,6 +42,7 @@ t_philo	*spawn_philos(t_data *data)
 	if (!philo)
 		return (NULL);
 	count++;
+	data->start = philo;
 	while (count <= data->philo_nbr)
 	{
 		temp = philo;
@@ -49,9 +52,10 @@ t_philo	*spawn_philos(t_data *data)
 		philo = philo->next;
 		philo->prev = temp;
 		count++;
+		//printf("count is %zu\n", count);
 	}
 	printf("all philos created\n");
-	return (search_first(philo));
+	return (data->start);
 }
 
 /*Function that fills an emty philo struct with data and
@@ -72,7 +76,7 @@ t_philo	*init_philo(t_data *data, size_t count)
 	philo->next = NULL;
 	philo->fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	philo->meal_lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	if (!philo->fork)
+	if (!philo->fork || !philo->meal_lock)
 		return (NULL);
 	return (philo);
 }

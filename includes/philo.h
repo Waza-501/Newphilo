@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 15:00:07 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 15:44:29 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ int			input_checker(int ac, char **av);
 int			value_checker(t_data *data, int ac);
 
 /*Cleanup*/
-void		free_all(t_data *data, t_philo *philo, pthread_t *threads);
+int			free_all(t_data *data, t_philo *philo, pthread_t *threads);
+int			thread_error(t_data *d, pthread_t *t, size_t num);
 
 /*Initialize*/
 bool		init_mutex(t_data *data, t_philo *philo);

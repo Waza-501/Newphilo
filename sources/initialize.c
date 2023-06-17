@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 13:04:49 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/17 15:13:47 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_philo	*spawn_philos(t_data *data)
 		philo->prev = temp;
 		count++;
 	}
+	printf("all philos created\n");
 	return (search_first(philo));
 }
 

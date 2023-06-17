@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 14:51:51 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 15:00:07 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ ERR = error I = input D = data*/
 # define ERR_FND	"Error occured."
 # define ERR_I_N	"Input incorrect, please use only numbers."
 # define ERR_I_NN	"Input incorrect, please use positive numbers."
+# define ERR_I_M	"Input incorrect. please use a value lower than max int."
 # define ERR_I_C	"Input incorrect, please enter 4 or 5 digits."
 # define ERR_M		"Initialization of mutex failed. Please try again."
 # define ERR_D_NP	"Invalid amount of philosophers. At least one is needed."

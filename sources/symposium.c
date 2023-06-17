@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 14:52:23 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 15:13:17 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ bool	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 	if (init_mutex(data, philo) != true)
 		return (false);
 	data->starttime = get_current_time() + (data->philo_nbr * 2 * 10);
+	printf("starting philo spawn\n");
 	while (i < data->philo_nbr)
 	{
 		if (pthread_create(&threads[i], NULL, &philosopher,
@@ -87,8 +88,11 @@ bool	start_session(t_data *data)
 	pthread_t	*threads;
 	t_philo		*philo;
 
+	printf("starting session\n");
 	threads = create_threads(data);
+	printf("threads created\n");
 	philo = spawn_philos(data);
+	printf("philo created\n");
 	if (!threads || !philo)
 	{
 		free_all(data, philo, threads);

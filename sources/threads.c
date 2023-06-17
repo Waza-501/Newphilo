@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 23:08:33 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 12:18:41 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 13:07:07 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ pthread_t	join_threads(pthread_t *threads, size_t amount)
 	}
 	return (NULL);
 }
-
-
 
 pthread_t	*create_threads(t_data *data)
 {

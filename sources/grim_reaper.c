@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 09:45:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 20:37:40 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 13:03:33 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	set_finish(t_data *data, int status)
 {
 	pthread_mutex_lock(data->dead);
 	data->stop = status;
-	//printf("updated status\n");
 	pthread_mutex_unlock(data->dead);
 }
+
 bool	check_status(t_data *data)
 {
 	bool	status;
@@ -36,16 +36,13 @@ bool	kill_philo(t_data *data, t_philo *philo)
 	time_t	time;
 
 	time = get_current_time();
-	//printf("mutex fuckery found?\n");
 	if ((time - philo->last_dinner) >= data->time_to_die)
 	{
-		//printf("check to make sure no one dies\n");
 		set_finish(data, true);
 		print_status(philo, true, DEATH);
 		pthread_mutex_unlock(philo->meal_lock);
 		return (true);
 	}
-	//printf("no philo needed to die\n");
 	return (false);
 }
 
@@ -69,10 +66,10 @@ bool	is_finished(t_data *data)
 		philo = philo->next;
 	}
 	if (data->meals_req != -1 && satiated == true)
-		{
-			set_finish(data, true);
-			return (true);
-		}
+	{
+		set_finish(data, true);
+		return (true);
+	}
 	return (false);
 }
 

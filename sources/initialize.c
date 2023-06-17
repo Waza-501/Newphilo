@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 14:20:07 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 13:04:49 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_philo	*spawn_philos(t_data *data)
 	return (search_first(philo));
 }
 
-
 /*Function that fills an emty philo struct with data and
 makes sure all memory is correctly allocated*/
 t_philo	*init_philo(t_data *data, size_t count)
@@ -81,7 +80,7 @@ t_philo	*init_philo(t_data *data, size_t count)
 and makes sure it all gets allocated if needed*/
 t_data	*init_data(char **av)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
@@ -104,5 +103,5 @@ t_data	*init_data(char **av)
 		err(ERR_M);
 		return (NULL);
 	}
-	return (data);	
+	return (data);
 }

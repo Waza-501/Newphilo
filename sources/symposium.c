@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 20:33:02 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 13:06:55 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,16 @@ bool	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 	while (i < data->philo_nbr)
 	{
 		if (pthread_create(&threads[i], NULL, &philosopher,
-			(void *)philo) != 0)
+				(void *)philo) != 0)
 			return (false);
 		philo = philo->next;
 		i++;
 	}
-	//printf("%zu threads/philosophers created\n", i);
 	if (data->philo_nbr > 1)
 	{
 		if (pthread_create(&data->grim_reaper, NULL,
-			&grim_reaper, (void *)data) != 0)
-				return (false);
+				&grim_reaper, (void *)data) != 0)
+			return (false);
 	}
 	return (true);
 }
@@ -102,7 +101,7 @@ bool	start_session(t_data *data)
 		free_all(data, philo, threads);
 		return (false);
 	}
-	if (end_session(data, philo, threads) ==  false)
+	if (end_session(data, philo, threads) == false)
 		return (err(ERR_FND));
 	return (true);
 }

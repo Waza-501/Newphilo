@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:24:37 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 20:43:54 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 13:05:57 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	print_status(t_philo *philo, bool death, t_status status)
 		sim_print(philo, "is sleeping");
 	else if (status == DEATH)
 		sim_print(philo, "died");
-		// printf("%ld %zu died\n",
-		// 	get_current_time() - philo->data->starttime, philo->tag);
 	else if (status == FINISHED)
 		printf("%s\n", FIN);
 	pthread_mutex_unlock(philo->data->print);

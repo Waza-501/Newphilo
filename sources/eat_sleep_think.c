@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 10:40:05 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/16 20:07:25 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/17 13:02:52 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	drop_forks(t_philo *philo)
 		pthread_mutex_unlock(philo->next->fork);
 	else
 		pthread_mutex_unlock(temp->fork);
-	//printf("forks dropped for philo %zu\n", philo->tag);
 }
 
 /*Locks the forks that the philosopher will use*/
@@ -78,6 +77,6 @@ void	eat_sleep(t_data *data, t_philo *philo)
 		pthread_mutex_unlock(philo->meal_lock);
 	}
 	drop_forks(philo);
-	print_status(philo, false,  SLEEP);
+	print_status(philo, false, SLEEP);
 	c_sleep(data, data->time_to_sleep);
 }

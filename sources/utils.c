@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:04:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 14:59:34 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/18 17:59:15 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ static int	check_str_atoi(const char *str)
 		i++;
 	}
 	if (str[i] < '0' || str[i] > '9')
-		return (1);
+		return (err(ERR_I_N));
 	while (str[i] >= '0' && str[i] <= '9')
 		i++;
 	if (str[i] != '\0')
-		return (-1);
+		return (err(ERR_I_N));
 	return (0);
 }
 
 /*Atoi modified to work better with philo project.*/
-int	ft_philoatoi(const char *str, int tmp)
+int	ft_philoatoi(const char *str)
 {
 	unsigned long	nbr;
 	int		i;
@@ -52,8 +52,8 @@ int	ft_philoatoi(const char *str, int tmp)
 	nbr = 0;
 	if (check_str_atoi(str) != 0)
 	{
-		tmp = err(ERR_I_N);
-		return (tmp);
+		//tmp = err(ERR_I_N);
+		return (-1);
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{

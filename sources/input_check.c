@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:39:22 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:21:31 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/18 17:46:52 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	input_checker(int ac, char **av)
 	}
 	while (av[i])
 	{
-		if (ft_philoatoi(av[i], 0) < 0)
+		if (ft_philoatoi(av[i]) < 0)
 			return (-2);
 		i++;
 	}

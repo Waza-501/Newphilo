@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:21:58 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/18 17:46:59 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 ERR = error I = input D = data*/
 # define ERR_FND	"Error occured."
 # define ERR_I_N	"Input incorrect, please use only numbers."
-# define ERR_I_NN	"Input incorrect, please use positive numbers."
+# define ERR_I_NN	"Input incorrect, please use (positive) numbers."
 # define WARNING_S	"if you pick a very large number, it will take a lot \
 longer before it exits out. Just so you know."
 # define ERR_I_M	"Input incorrect. please use a value lower than max int."
@@ -94,7 +94,7 @@ typedef enum e_status
 /*Functions*/
 /*Utils*/
 int			ft_strlen(char *str);
-int			ft_philoatoi(const char *str, int tmp);
+int			ft_philoatoi(const char *str);
 t_philo		*search_first(t_philo *list);
 
 /*Input_check*/

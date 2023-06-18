@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:52:55 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/18 17:47:28 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ t_data	*init_data(char **av)
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->philo_nbr = ft_philoatoi(av[1], 0);
-	data->time_to_die = ft_philoatoi(av[2], 0);
-	data->time_to_eat = ft_philoatoi(av[3], 0);
-	data->time_to_sleep = ft_philoatoi(av[4], 0);
+	data->philo_nbr = ft_philoatoi(av[1]);
+	data->time_to_die = ft_philoatoi(av[2]);
+	data->time_to_eat = ft_philoatoi(av[3]);
+	data->time_to_sleep = ft_philoatoi(av[4]);
 	if (av[5])
-		data->meals_req = ft_philoatoi(av[5], 0);
+		data->meals_req = ft_philoatoi(av[5]);
 	else
 		data->meals_req = -1;
 	data->starttime = 0;

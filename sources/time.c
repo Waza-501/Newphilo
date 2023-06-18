@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:59:53 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 18:01:16 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/18 17:04:22 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void	c_sleep(t_data *data, size_t sleeptime)
 	{
 		if (check_status(data) == true)
 			break ;
-		usleep(200);
+		usleep(500);
 	}
 }

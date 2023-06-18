@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 10:40:05 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 13:02:52 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/18 17:14:13 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	think_time(t_data *data, t_philo *philo, bool start)
 		think_timer = 200;
 	if (start == false)
 		print_status(philo, false, THINK);
-	c_sleep(data, think_timer);
+	if (start ==  true)
+		c_sleep(data, think_timer);
 }
 
 /*Eat and sleep nicely fitted into one function.*/

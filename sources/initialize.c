@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/18 17:47:28 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/19 13:11:54 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,6 @@ bool	init_mutex(t_data *data)
 		return (false);
 	if (pthread_mutex_init(data->dead, NULL) != 0)
 		return (false);
-	// while (philo)
-	// {
-	// 	if (pthread_mutex_init(philo->fork, NULL) != 0)
-	// 		return (false);
-	// 	if (pthread_mutex_init(philo->meal_lock, NULL) != 0)
-	// 		return (false);
-	// 	philo = philo->next;
-	// }
 	return (true);
 }
 

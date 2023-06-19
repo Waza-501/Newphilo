@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 09:45:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 17:59:49 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/18 18:53:04 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ bool	is_finished(t_data *data)
 
 	philo = data->start;
 	satiated = true;
-	philo = data->start;
 	while (philo)
 	{
 		pthread_mutex_lock(philo->meal_lock);

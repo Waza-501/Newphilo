@@ -6,22 +6,16 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:36:35 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 15:42:03 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/18 18:58:42 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// static void	checkleaks(void)
-// {
-// 	system("leaks -q philo");
-// }
-
 int	main(int ac, char **av)
 {
 	t_data	*data;
 
-	//atexit(checkleaks);
 	if (input_checker(ac, av) != 0)
 		return (-1);
 	data = init_data(av);

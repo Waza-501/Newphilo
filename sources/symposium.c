@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:52:14 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/19 13:25:24 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 bool	end_session(t_data *data, pthread_t *threads)
 {
-	//printf("don't print pls\n");
 	join_threads(threads, data->philo_nbr);
 	if (data->philo_nbr > 1)
 		pthread_join(data->grim_reaper, NULL);
-	//free_all(data, philo, threads);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:39:22 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/18 17:46:52 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/19 13:12:06 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	value_checker(t_data *data, int ac)
 	if (data->time_to_sleep == 0)
 		i = err(ERR_D_ST);
 	if (data->meals_req == 0 && ac == 6)
-	{
 		i = err(ERR_D_MQ);
-		//printf("Simulation has ended.\n");
-	}
 	return (i);
 }
 

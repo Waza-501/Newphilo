@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:04:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/18 17:59:15 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/19 13:25:48 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ int	ft_philoatoi(const char *str)
 	i = 0;
 	nbr = 0;
 	if (check_str_atoi(str) != 0)
-	{
-		//tmp = err(ERR_I_N);
 		return (-1);
-	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		nbr = (nbr * 10) + str[i] - '0';

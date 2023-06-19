@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:42:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 16:53:31 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/19 13:09:05 by Owen          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,9 @@ int	free_all(t_data *data, t_philo *philo, pthread_t *threads)
 {
 	if (data)
 		free_data(data);
-	//printf("data is gone\n");
 	if (philo)
 		free_philo(philo);
-	//printf("philo is gone\n");
 	free(threads);
-	//printf("threads are gone\n");
 	return (0);
 }
 

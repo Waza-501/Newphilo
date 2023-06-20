@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:42:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/19 13:09:05 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/20 15:16:21 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	free_all(t_data *data, t_philo *philo, pthread_t *threads)
 	return (0);
 }
 
+/*Collects all treads created thus far, and sets status to finished*/
 int	thread_error(t_data *d, pthread_t *t, size_t num)
 {
 	err(ERR_T_F);
@@ -69,4 +70,3 @@ int	thread_error(t_data *d, pthread_t *t, size_t num)
 	join_threads(t, num);
 	return (-1);
 }
-

@@ -6,21 +6,30 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:40:58 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/19 13:11:54 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/20 15:52:44 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*Initializes the mutexes in data*/
 bool	init_mutex(t_data *data)
 {
 	if (pthread_mutex_init(data->print, NULL) != 0)
+	{
+		err(ERR_MX);
 		return (false);
+	}
 	if (pthread_mutex_init(data->dead, NULL) != 0)
+	{
+		err(ERR_MX);
 		return (false);
+	}
 	return (true);
 }
 
+/*Spawns the required amount of philosophers, placing them
+in a doubly linked list (could be a normal one though) */
 t_philo	*spawn_philos(t_data *data)
 {
 	t_philo	*philo;

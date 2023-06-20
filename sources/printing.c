@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:24:37 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/17 13:05:57 by ohearn        ########   odam.nl         */
+/*   Updated: 2023/06/20 15:25:37 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	err(char *str)
 	return (-1);
 }
 
+/*Prints the message*/
 static void	sim_print(t_philo *philo, char *str)
 {
 	bool	debug;
@@ -31,6 +32,9 @@ static void	sim_print(t_philo *philo, char *str)
 			- philo->data->starttime, philo->tag, str);
 }
 
+/*Based on the given inputs, prints the message
+associated with it. In case the simulation has ended
+and it's not the death message print, it does nothing*/
 void	print_status(t_philo *philo, bool death, t_status status)
 {
 	pthread_mutex_lock(philo->data->print);

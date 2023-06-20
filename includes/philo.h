@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:34:45 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/18 17:46:59 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/20 15:49:13 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@
 # include <limits.h>
 
 /*Defines to make error messages easier and more readable. 
-ERR = error I = input D = data*/
+ERR = error I = input D = data S = Size T = threads*/
 # define ERR_FND	"Error occured."
+# define ERR_M		"Malloc failed."
 # define ERR_I_N	"Input incorrect, please use only numbers."
 # define ERR_I_NN	"Input incorrect, please use (positive) numbers."
 # define WARNING_S	"if you pick a very large number, it will take a lot \
 longer before it exits out. Just so you know."
 # define ERR_I_M	"Input incorrect. please use a value lower than max int."
 # define ERR_I_C	"Input incorrect, please enter 4 or 5 digits."
-# define ERR_M		"Initialization of mutex failed. Please try again."
+# define ERR_MX		"Initialization of mutex failed. Please try again."
 # define ERR_D_NP	"Invalid amount of philosophers. At least one is needed."
 # define ERR_D_DT	"Invalid time to die. Philosophers deserve at least 1ms\
  of life."
@@ -43,6 +44,7 @@ ms to sleep."
 # define ERR_T_FND	"An issue occured during creation of the required \
 threads."
 # define ERR_T_F	"Failure occured during pthread_create. Please try again."
+# define ERR_TP		"Error occured during creation of the philosophers/threads."
 # define FIN		"Simulation succesful. All Philosophers are satisfied"
 
 typedef struct s_philo	t_philo;

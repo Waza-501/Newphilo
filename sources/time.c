@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:59:53 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/18 17:04:22 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/20 15:28:55 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ time_t	get_current_time(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
+/*Delays the start time unless something fails*/
 void	delay_start(t_data *data)
 {
 	while (get_current_time() < data->starttime && check_status(data) == false)

@@ -6,7 +6,7 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 14:36:35 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/18 18:58:42 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/20 15:45:37 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int ac, char **av)
 	data = init_data(av);
 	if (!data)
 	{
+		err(ERR_M);
 		free_all(data, NULL, NULL);
 		return (-1);
 	}
@@ -31,6 +32,5 @@ int	main(int ac, char **av)
 	}
 	if (start_session(data) == false)
 		return (-1);
-	printf("Simulation has ended\n");
 	return (0);
 }

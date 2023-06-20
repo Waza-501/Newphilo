@@ -6,12 +6,13 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/16 09:45:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/18 18:53:04 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/20 14:45:09 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*The only function able to change the status of stop*/
 void	set_finish(t_data *data, int status)
 {
 	pthread_mutex_lock(data->dead);
@@ -19,6 +20,7 @@ void	set_finish(t_data *data, int status)
 	pthread_mutex_unlock(data->dead);
 }
 
+/*Used to check if the simulation has ended*/
 bool	check_status(t_data *data)
 {
 	bool	status;
@@ -31,6 +33,9 @@ bool	check_status(t_data *data)
 	return (status);
 }
 
+/*Checks if a philosopher needs to be killed, setting
+calling set_finish if a philosopher has died and printing
+it's number.*/
 bool	kill_philo(t_data *data, t_philo *philo)
 {
 	time_t	time;
@@ -46,6 +51,9 @@ bool	kill_philo(t_data *data, t_philo *philo)
 	return (false);
 }
 
+/*Checks if the simulation has finished by checking
+if a philosopher has to be killed and if all of the
+philosophers have eaten enough, if meals_req != -1*/
 bool	is_finished(t_data *data)
 {
 	t_philo		*philo;

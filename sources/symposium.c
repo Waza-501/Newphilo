@@ -6,12 +6,14 @@
 /*   By: Owen <Owen@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/06/14 16:39:29 by Owen          #+#    #+#                 */
-/*   Updated: 2023/06/19 13:25:24 by Owen          ########   odam.nl         */
+/*   Updated: 2023/06/20 15:48:22 by ohearn        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*Joins all threads, including grim reaper if
+there is more than a singular philosopher*/
 bool	end_session(t_data *data, pthread_t *threads)
 {
 	join_threads(threads, data->philo_nbr);
@@ -20,7 +22,7 @@ bool	end_session(t_data *data, pthread_t *threads)
 	return (true);
 }
 
-/*Run this if there is just one philo*/
+/*Runs this if there is just one philo*/
 static void	*single_philo(t_data *data, t_philo *philo)
 {
 	pthread_mutex_lock(philo->fork);
@@ -31,6 +33,8 @@ static void	*single_philo(t_data *data, t_philo *philo)
 	return (NULL);
 }
 
+/*Philosopher thread routine. Staggers even numbered
+philosophers so the process runs smoothly.*/
 void	*philosopher(void *input)
 {
 	t_philo	*philo;
@@ -56,6 +60,8 @@ void	*philosopher(void *input)
 	return (NULL);
 }
 
+/*Starts thread creation and sets a delay so the simulation
+starts when all threads are there, including the grim_reaper*/
 int	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 {
 	size_t	i;
@@ -64,7 +70,6 @@ int	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 	if (init_mutex(data) != true)
 		return (false);
 	data->starttime = get_current_time() + (data->philo_nbr * 2 * 10);
-	printf("starting philo spawn\n");
 	while (i < data->philo_nbr)
 	{
 		if (pthread_create(&threads[i], NULL, &philosopher,
@@ -82,6 +87,10 @@ int	start_sim(t_data *data, t_philo *philo, pthread_t *threads)
 	return (0);
 }
 
+/*Prepares everything and makes sure it's all there
+before starting the simulation. Will make sure
+all allocated memory is freed if an error occurs
+or if the simulation ends through meals_req*/
 bool	start_session(t_data *data)
 {
 	pthread_t	*threads;
@@ -91,6 +100,7 @@ bool	start_session(t_data *data)
 	philo = spawn_philos(data);
 	if (!threads || !philo)
 	{
+		err(ERR_TP);
 		free_all(data, philo, threads);
 		return (false);
 	}
